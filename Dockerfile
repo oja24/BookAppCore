@@ -9,4 +9,4 @@ RUN dotnet publish -c release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=build /app/out ./
-ENTRYPOINT ["dotnet","demoapp.dll"]
+ENTRYPOINT ["dotnet","BookAppCore.dll"]
