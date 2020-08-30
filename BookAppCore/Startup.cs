@@ -31,7 +31,7 @@ namespace BookAppCore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
+            services.AddDbContext<BookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BookDbContext")));
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
             
