@@ -1,4 +1,4 @@
-terraform {
+ terraform {
   required_version = ">= 0.11" 
  backend "azurerm" {
   storage_account_name = "__terraformstorageaccount__"
@@ -13,7 +13,7 @@ terraform {
 features {}
 }
 resource "azurerm_resource_group" "dev" {
-  name     = "faso-web-rg"
+  name     = "faso-webapp-rg"
   location = "eastus"
 }
 
@@ -38,7 +38,7 @@ resource "azurerm_app_service" "dev" {
 
 
 resource "azurerm_sql_server" "dev" {
-  name                         = "${var.prefix}-03sqlsvr"
+  name                         = "${var.prefix}-02sqlsvr"
   resource_group_name          = "${azurerm_resource_group.dev.name}"
   location                     = "${azurerm_resource_group.dev.location}"
   version                      = "12.0"
@@ -47,7 +47,7 @@ resource "azurerm_sql_server" "dev" {
 }
 
 resource "azurerm_sql_database" "fcs-tf" {
-  name                             = "${var.prefix}-db"
+  name                             = "WebBookData"
   resource_group_name              = "${azurerm_resource_group.dev.name}"
   location                         = "${azurerm_resource_group.dev.location}"
   server_name                      = "${azurerm_sql_server.dev.name}"
