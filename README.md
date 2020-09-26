@@ -1,0 +1,1 @@
+[![Build Status](https://dev.azure.com/Roya-DevOps-World/BookAppWeb/_apis/build/status/BookAppWeb-ASP.NET%20Core-CI?branchName=master)](https://dev.azure.com/Roya-DevOps-World/BookAppWeb/_build/latest?definitionId=26&branchName=master)
