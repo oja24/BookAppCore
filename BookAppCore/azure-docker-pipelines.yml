@@ -1,0 +1,53 @@
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'ACR'
+  imageRepository: 'bookapp'
+  webappName: 'fasomcwacr'
+  containerRegistry: 'fasomcwacr.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/BookAppCore/Dockerfile'
+  tag: 'latest'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+- stage: 'Deploy'
+  displayName: 'Deploy web container'
+  dependsOn: Build 
+  jobs: 
+  - job: 'deloy'
+    displayName: 'Deploy job' 
+    pool: 
+     vmImage: 'ubuntu-18.04'
+     
+    steps: 
+    - task: AzureWebAppContainer@1 
+      inputs:
+        appName: $(webappName)
+        azureSubscription: 'bookappConnection'
+        imageName: $(containerRegistry)/$(imageRepository):$(tag)
+
