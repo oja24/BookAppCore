@@ -11,3 +11,13 @@ az sql server firewall-rule create -n AllowLocalClient --server upworksql -g $rg
 az sql db create -g $rg --server upworksql--name PetSoreAppDB-dev --service-objective S0
 
 az sql db create -g $rg --server upworksql--name PetSoreAppDB-prod --service-objective S0
+
+
+
+az keyvault create -n connkey -g $rg
+az keyvault secret set --value "connectionString" --vault-name connkey --name connkey
+* select web app choose identity and enable it.
+1- add acces policy to the user => choose secret,key&certification =>Select principal choose user
+2- add access policy to webapp to secret => choose secret management => select principal choose web app name
+3- select secret, secret name, version and copy "Secret Identifier"
+4- go to webapp, configuration, connection and replace => value with @Microsoft.KeyVault(SecretUri=Secret Identifier)
