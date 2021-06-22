@@ -10,9 +10,6 @@
 
  }
 
-locals {
-  db_server = ${split(., var.db_server_fqdn)}
-}
 
 
 resource azurerm_sql_database db {
