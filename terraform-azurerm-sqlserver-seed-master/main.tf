@@ -1,6 +1,6 @@
 
  provider azurerm {
- version = =2.0.0
+ version =2.0.0
  features {}
   subscription_id = 55f02284-ce87-4fd9-98e2-f41f32cf21a9
 #   client_id       = REPLACE-WITH-YOUR-CLIENT-ID
