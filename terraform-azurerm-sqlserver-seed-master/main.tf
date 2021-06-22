@@ -1,12 +1,12 @@
 
- provider azurerm {
- version =2.0.0
+ provider "azurerm" {
+ version = "=2.0.0"
  features {}
-  subscription_id = 55f02284-ce87-4fd9-98e2-f41f32cf21a9
+  subscription_id = "55f02284-ce87-4fd9-98e2-f41f32cf21a9"
 #   client_id       = REPLACE-WITH-YOUR-CLIENT-ID
 #   client_secret   = REPLACE-WITH-YOUR-CLIENT-SECRET
 
-  tenant_id       = b384c323-fd39-4008-b967-3fc84b0bc4ca
+  tenant_id       = "b384c323-fd39-4008-b967-3fc84b0bc4ca"
 
  }
 
