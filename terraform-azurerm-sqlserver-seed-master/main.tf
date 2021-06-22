@@ -16,7 +16,7 @@ resource azurerm_sql_database db {
   name                             = var.db_name
   location                         = var.location
   resource_group_name              = var.resource_group
-  server_name                      = local.db_server[0]
+  server_name                      = local.db_server
   edition                          = var.db_edition
   collation                        = var.collation
   requested_service_objective_name = var.service_objective_name
