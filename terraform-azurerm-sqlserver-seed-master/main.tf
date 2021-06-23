@@ -1,11 +1,12 @@
 provider "azurerm" {
-  version = ">0.13"
-  features {}
+features {}
 }
 
 terraform {
+  required_version = ">0.13"
   required_providers {
-    azurerm = {
+    azure = {
+    
       source = "hashicorp/azurerm"
       version = "=2.35.0"
 
